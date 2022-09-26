@@ -7,7 +7,7 @@ import org.springframework.context.annotation.ImportResource;
 @SpringBootApplication
 @ImportResource("classpath:epidemicrelief-spring.xml")
 public class Launcher {
-
+//TODO: Test the application
     public static void main(String[] args) {
         SpringApplication.run(Launcher.class, args);
     }

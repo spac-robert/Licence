@@ -13,10 +13,6 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class Internationalization {
-    //TODO nu merge nu stiu dc nu ia valorile din yaml
-    //TODO continuat task 8
-    //TODO nu merge @Value deoarece fac cu new Internationalization sa ii fac autowire
-    //TODO sa trimit si Locale prin constructor
 
     private final ProductRepository productRepository;
 
