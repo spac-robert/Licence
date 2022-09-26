@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <alias name="defaultHouseholdService" alias="householdService"/>
+    <bean id="defaultHouseholdService"
+          class="eu.accesa.internship.epidemicrelief.service.impl.DefaultHouseholdService">
+        <constructor-arg name="householdRepository" ref="householdRepository"/>
+    </bean>
+
+    <alias name="defaultProductService" alias="productService"/>
+    <bean id="defaultProductService"
+          class="eu.accesa.internship.epidemicrelief.service.impl.DefaultProductService">
+        <constructor-arg name="productRepository" ref="productRepository"/>
+    </bean>
+
+    <alias name="defaultPackageService" alias="packageService"/>
+    <bean id="defaultPackageService"
+          class="eu.accesa.internship.epidemicrelief.service.impl.DefaultPackageService">
+        <constructor-arg name="packageRepository" ref="packageRepository"/>
+        <constructor-arg name="productRepository" ref="productRepository"/>
+        <constructor-arg name="householdRepository" ref="householdRepository"/>
+    </bean>
+
+</beans>

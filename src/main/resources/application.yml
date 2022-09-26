@@ -1,0 +1,57 @@
+server:
+  port: 8081
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/epidemicrelief?autoReconnect=true&useSSL=false&serverTimezone=UTC
+    username: root
+    password: Spa306r*4834
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        user_sql_comments: true
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+  mvc:
+    view:
+      prefix: /WEB-INF/jsp/pages/
+      suffix: .jsp
+minim:
+  stock:
+    threshold: 50
+batch:
+  size: 3
+choose:
+  api:
+    type: rest
+    uri: http://localhost:8082/soap-products/GetProductRequest
+
+internationalization:
+  country: RO
+  lang: ro
+  locale: ro_RO
+
+resilience4j.circuitbreaker:
+  configs:
+    default:
+      registerHealthIndicator: true
+      slidingWindowSize: 10
+      minimumNumberOfCalls: 5
+      permittedNumberOfCallsInHalfOpenState: 5
+      automaticTransitionFromOpenToHalfOpenEnabled: true
+      waitDurationInOpenState: 60000
+      slowCallDurationThreshold: 2000
+      failureRateThreshold: 50
+      eventConsumerBufferSize: 10
+      recordExceptions:
+        - org.springframework.web.client.HttpServerErrorException
+        - java.util.concurrent.TimeoutException
+        - java.io.IOException
+      ignoreExceptions:
+        - org.springframework.web.client.HttpClientErrorException
+  instance:
+    mainService:
+      baseConfig: default

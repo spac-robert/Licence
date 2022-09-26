@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <alias name="defaultHouseholdConverter" alias="householdConverter"/>
+    <bean id="defaultHouseholdConverter"
+          class="eu.accesa.internship.epidemicrelief.converter.HouseholdConverter"/>
+
+    <alias name="defaultProductConverter" alias="productConverter"/>
+    <bean id="defaultProductConverter"
+          class="eu.accesa.internship.epidemicrelief.converter.ProductConverter">
+        <constructor-arg name="internationalization" ref="internationalization"/>
+    </bean>
+
+    <alias name="defaultPackageConverter" alias="packageConverter"/>
+    <bean id="defaultPackageConverter"
+          class="eu.accesa.internship.epidemicrelief.converter.PackageConverter"/>
+
+</beans>
