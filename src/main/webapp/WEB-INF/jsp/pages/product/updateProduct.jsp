@@ -20,6 +20,11 @@
                             <input type="number" name="stock" id="stock" class="form-control" value="${product.stock}"
                                    placeholder="Stock">
                         </div>
+                        <div class="form-group col-md-6">
+                            <label for="stock" class="col-form-label">Price</label>
+                            <input type="number" name="price" id="price" class="form-control" value="${product.price}"
+                                   placeholder="Price">
+                        </div>
                         <label for="name" class="col-form-label">Category
                             <select name="productCategory">
                                 <c:forEach items="${categories}" var="entry">
@@ -27,6 +32,13 @@
                                 </c:forEach>
                             </select>
                         </label>
+                    </div>
+                    <div for="name" class="col-form-label">
+                        <div class="form-group col-md-6">
+                            <label for="name" class="col-form-label">Currency</label>
+                            <input type="text" name="currency" id="currency" class="form-control"
+                                   value="${product.currency}" placeholder="Currency">
+                        </div>
                     </div>
                     <div class="row">
                         <div class="col-md-6 mt-5">

@@ -30,9 +30,9 @@ choose:
     uri: http://localhost:8082/soap-products/GetProductRequest
 
 internationalization:
-  country: RO
-  lang: ro
-  locale: ro_RO
+  country: En
+  lang: en
+  locale: en_EN
 
 resilience4j.circuitbreaker:
   configs:

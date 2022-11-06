@@ -24,7 +24,6 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @Column(unique = true, columnDefinition = "VARCHAR(255)")
-    @NotBlank(message = "UUID cannot be null")
     private String uuid;
     @Column(unique = true)
     @NotBlank(message = "Name cannot be not blank")
