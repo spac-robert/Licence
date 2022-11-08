@@ -1,6 +1,8 @@
 <%@ taglib prefix="template" tagdir="/WEB-INF/tags/template" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<style>
+    <%@include file="style/product.css"%>
+</style>
 <template:pageTemplate title="UpdateHousehold">
 
     <div class="container my-5">
@@ -32,13 +34,6 @@
                                 </c:forEach>
                             </select>
                         </label>
-                    </div>
-                    <div for="name" class="col-form-label">
-                        <div class="form-group col-md-6">
-                            <label for="name" class="col-form-label">Currency</label>
-                            <input type="text" name="currency" id="currency" class="form-control"
-                                   value="${product.currency}" placeholder="Currency">
-                        </div>
                     </div>
                     <div class="row">
                         <div class="col-md-6 mt-5">
