@@ -45,11 +45,16 @@
                             <input type="submit" class="btn btn-primary" value="Update Household">
                         </div>
                     </div>
+                    <c:if test="${errorSize > 0}">
+                        <div class="border-error">
+                            <c:forEach items="${bindingResultMsg}" var="entry">
+                                <p class="error-msg">${entry}</p>
+                            </c:forEach>
+                        </div>
+                    </c:if>
                 </form>
             </div>
         </div>
     </div>
-    </body>
-    </html>
 
 </template:pageTemplate>
