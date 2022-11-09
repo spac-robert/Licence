@@ -52,7 +52,7 @@ public class HouseholdController {
     }
 
     @GetMapping("/edit/{id}")
-    public String getUpdateHouseholdForm(@PathVariable("id") long id, Model model,@ModelAttribute("error") ArrayList<String> error) {
+    public String getUpdateHouseholdForm(@PathVariable("id") long id, Model model, @ModelAttribute("error") ArrayList<String> error) {
         Optional<HouseholdData> household = householdFacade.getById(id);
         model.addAttribute("errorSize", Integer.toString(error.size()));
         model.addAttribute("bindingResultMsg", error);
@@ -65,7 +65,7 @@ public class HouseholdController {
     }
 
     @PostMapping("/update")
-    public String updateHousehold(@Valid HouseholdData household, BindingResult result, Model model, RedirectAttributes redirectAttrs) {
+    public String updateHousehold(@Valid HouseholdData household, BindingResult result, RedirectAttributes redirectAttrs) {
         List<String> bindingResultMsg = result.getAllErrors().stream().map(DefaultMessageSourceResolvable::getDefaultMessage).collect(Collectors.toList());
 
         if (result.hasErrors()) {
