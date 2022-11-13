@@ -84,10 +84,11 @@ public class ProductController {
     @PostMapping(value = "/save")
     public String addProduct(@Valid ProductData productData, BindingResult result, Model model) {
         model.addAttribute("categories", Arrays.asList(ProductCategory.values()));
+        model.addAttribute("currency", Arrays.asList(Currency.values()));
+
         List<String> error = result.getAllErrors().stream().map(ObjectError::getDefaultMessage).collect(Collectors.toList());
         if (result.hasErrors() || productData.getStock() < 0) {
             model.addAttribute("errorSize", Integer.toString(error.size()));
-            model.addAttribute("bindingResultMsg", result.getAllErrors().stream().map(ObjectError::getDefaultMessage).collect(Collectors.toList()));
             model.addAttribute("bindingResultMsg", result.getAllErrors().stream().map(ObjectError::getDefaultMessage).collect(Collectors.toList()));
             return ADD_PRODUCT_URL;
         }
