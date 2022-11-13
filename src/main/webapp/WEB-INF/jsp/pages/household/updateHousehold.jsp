@@ -1,7 +1,7 @@
 <%@ taglib prefix="template" tagdir="/WEB-INF/tags/template" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <style>
-    <%@include file="style/household.css"%>
+    <%@include file="style/errorMessage.css"%>
 </style>
 <template:pageTemplate title="UpdateHousehold">
 

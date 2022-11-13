@@ -42,7 +42,9 @@ public class HouseholdController {
 
     @PostMapping(value = "/save")
     public String addHousehold(@Valid HouseholdData household, BindingResult result, Model model) {
+        List<String> error = result.getAllErrors().stream().map(ObjectError::getDefaultMessage).collect(Collectors.toList());
         if (result.hasErrors()) {
+            model.addAttribute("errorSize", Integer.toString(error.size()));
             model.addAttribute("bindingResultMsg", result.getAllErrors().stream().map(ObjectError::getDefaultMessage).collect(Collectors.toList()));
             return "household/addHousehold";
         }
