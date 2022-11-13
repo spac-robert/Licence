@@ -1,6 +1,7 @@
 package eu.accesa.internship.epidemicrelief.controller;
 
 import eu.accesa.internship.epidemicrelief.data.ProductData;
+import eu.accesa.internship.epidemicrelief.utils.enums.Currency;
 import eu.accesa.internship.epidemicrelief.utils.enums.ProductCategory;
 import eu.accesa.internship.epidemicrelief.exception.CustomException;
 import eu.accesa.internship.epidemicrelief.facade.ProductFacade;
@@ -75,6 +76,7 @@ public class ProductController {
     @GetMapping("/new")
     public String getNewProductForm(Model model) {
         model.addAttribute("categories", Arrays.asList(ProductCategory.values()));
+        model.addAttribute("currency", Arrays.asList(Currency.values()));
 
         return ADD_PRODUCT_URL;
     }
@@ -82,9 +84,11 @@ public class ProductController {
     @PostMapping(value = "/save")
     public String addProduct(@Valid ProductData productData, BindingResult result, Model model) {
         model.addAttribute("categories", Arrays.asList(ProductCategory.values()));
+        List<String> error = result.getAllErrors().stream().map(ObjectError::getDefaultMessage).collect(Collectors.toList());
         if (result.hasErrors() || productData.getStock() < 0) {
+            model.addAttribute("errorSize", Integer.toString(error.size()));
             model.addAttribute("bindingResultMsg", result.getAllErrors().stream().map(ObjectError::getDefaultMessage).collect(Collectors.toList()));
-            //return PRODUCTS_URL + "/new";
+            model.addAttribute("bindingResultMsg", result.getAllErrors().stream().map(ObjectError::getDefaultMessage).collect(Collectors.toList()));
             return ADD_PRODUCT_URL;
         }
         productFacade.addProduct(productData);

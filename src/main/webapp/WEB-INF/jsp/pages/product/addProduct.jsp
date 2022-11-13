@@ -1,6 +1,8 @@
 <%@ taglib prefix="template" tagdir="/WEB-INF/tags/template" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<style>
+    <%@include file="style/product.css"%>
+</style>
 <template:pageTemplate title="Add Product">
 
     <div class="container my-5">
@@ -31,18 +33,32 @@
                             <label for="price" class="col-form-label">Price</label>
                             <input type="number" name="price" id="price" class="form-control" placeholder="Price">
                         </div>
+                            <%--                        <div class="form-group col-md-6">--%>
+                            <%--                            <label for="currency" class="col-form-label">Currency</label>--%>
+                            <%--                            <input type="text" name="currency" id="currency" class="form-control" placeholder="Currency">--%>
+                            <%--                        </div>--%>
                         <div class="form-group col-md-6">
-
-                            <label for="currency" class="col-form-label">Currency</label>
-                            <input type="text" name="currency" id="currency" class="form-control" placeholder="Currency">
+                            <label for="name">Currency
+                                <select name="currency">
+                                    <c:forEach items="${currency}" var="entry">
+                                        <option value="${entry}">${entry}</option>
+                                    </c:forEach>
+                                </select>
+                            </label>
                         </div>
                     </div>
-                    <p>${bindingResultMsg}</p>
                     <div class="row">
                         <div class="col-md-6 mt-5">
                             <input type="submit" class="btn btn-primary" value="Add Product">
                         </div>
                     </div>
+                    <c:if test="${errorSize > 0}">
+                        <div class="border-error">
+                            <c:forEach items="${bindingResultMsg}" var="entry">
+                                <p class="error-msg">${entry}</p>
+                            </c:forEach>
+                        </div>
+                    </c:if>
                 </form>
             </div>
         </div>
