@@ -14,7 +14,8 @@
             </select>
         </label>
         <br/><br/>
-        <input type="submit" class="btn btn-primary" value=<fmt:setLocale value="${locale}"/>
+        <input type="submit" class="btn btn-primary" value=
+            <fmt:setLocale value="${locale}"/>
         <fmt:bundle basename="Bundle">
             <fmt:message key="Submit"/>
         </fmt:bundle>/>
