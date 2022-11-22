@@ -88,8 +88,14 @@ dependencies {
     testImplementation 'junit:junit:4.13.1'
 
     jaxb "com.sun.xml.bind:jaxb-xjc:2.1.7"
-// end::dependency[]
     testImplementation('org.springframework.boot:spring-boot-starter-test')
+    compile "org.springframework.security:spring-security-web"
+    compile "org.springframework.security:spring-security-config"
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.security:spring-security-test'
+    implementation group: 'org.springframework.security', name: 'spring-security-taglibs', version: '5.4.1'
+
+
 }
 
 test {
