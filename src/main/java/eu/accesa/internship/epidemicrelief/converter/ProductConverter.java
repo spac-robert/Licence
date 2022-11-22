@@ -21,7 +21,7 @@ import java.util.Locale;
  * {@link Product} to {@link ProductData}
  */
 public class ProductConverter {
-    //private static final Logger LOGGER = LoggerFactory.getLogger(SOAPClient.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(ProductConverter.class);
 
 
     /**
@@ -49,7 +49,7 @@ public class ProductConverter {
             target.setPrice(internationalization.calculateCurrency(source.getPrice(), source.getCurrency()));
             target.setCurrency(Currency.valueOf(internationalization.getCurrency(internationalization.getCountry()).toUpperCase()));
         } catch (CustomException e) {
-           // LOGGER.warn(e.getMessage());
+            LOGGER.warn(e.getMessage());
         }
 
         return target;

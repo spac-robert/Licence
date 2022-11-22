@@ -1,5 +1,5 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="template" tagdir="/webapp/WEB-INF/tags/template" %>
+<%@ taglib prefix="template" tagdir="/WEB-INF/tags/template" %>
 
 <template:pageTemplate title="Households">
 

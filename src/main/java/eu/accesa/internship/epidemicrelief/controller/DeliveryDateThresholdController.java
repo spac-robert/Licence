@@ -23,7 +23,7 @@ public class DeliveryDateThresholdController {
     @GetMapping("/deliverydatethreshold")
     public String index(Model model) {
         Iterable<DeliveryDateThreshold> threshold = repository.findAll();
-        model.addAttribute("deliveryDateThreashold", threshold.iterator().next());
+        model.addAttribute("deliveryDateThreshold", threshold.iterator().next());
 
         return "date_delivered_threshold";
     }

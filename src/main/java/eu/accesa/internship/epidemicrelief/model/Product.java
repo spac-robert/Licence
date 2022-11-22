@@ -16,15 +16,11 @@ import java.util.List;
 @Entity(name = "Product")
 @Table(name = "product")
 @NaturalIdCache
-//@org.hibernate.annotations.Cache(
-//        usage = CacheConcurrencyStrategy.READ_WRITE
-//)
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @Column(unique = true, columnDefinition = "VARCHAR(255)")
-    @NotBlank(message = "UUID cannot be null")
     private String uuid;
     @Column(unique = true)
     @NotBlank(message = "Name cannot be not blank")

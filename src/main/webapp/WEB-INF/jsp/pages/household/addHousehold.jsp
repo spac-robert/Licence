@@ -1,5 +1,9 @@
 <%@ taglib prefix="template" tagdir="/WEB-INF/tags/template" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+<style>
+    <%@include file="style/errorMessage.css"%>
+</style>
 <template:pageTemplate title="Add Household">
 
     <div class="container my-5">
@@ -49,17 +53,18 @@
                                    placeholder="Non Vegans">
                         </div>
                     </div>
-<%--                    <c:forEach items="${bindingResultMsg}" var="resultMsg">--%>
-<%--                        <tr>--%>
-<%--                            <td>${resultMsg}</td>--%>
-<%--                        </tr>--%>
-<%--                    </c:forEach>--%>
-                    <p>${bindingResultMsg}</p>
                     <div class="row">
                         <div class="col-md-6 mt-5">
                             <input type="submit" class="btn btn-primary" value="Add Household">
                         </div>
                     </div>
+                    <c:if test="${errorSize > 0}">
+                        <div class="border-error">
+                            <c:forEach items="${bindingResultMsg}" var="entry">
+                                <p class="error-msg">${entry}</p>
+                            </c:forEach>
+                        </div>
+                    </c:if>
                 </form>
             </div>
         </div>

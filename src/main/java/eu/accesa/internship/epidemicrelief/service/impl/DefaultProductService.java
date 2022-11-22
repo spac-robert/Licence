@@ -49,6 +49,7 @@ public class DefaultProductService implements ProductService {
             throw new EntityNotFoundException("Unable to find product to update; id: " + product.getId());
         }
         product.setUuid(productOptional.get().getUuid());
+        product.setCurrency(productOptional.get().getCurrency());
         productRepository.save(product);
     }
 
