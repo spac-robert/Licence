@@ -3,16 +3,17 @@ package eu.accesa.internship.epidemicrelief.controller;
 import eu.accesa.internship.epidemicrelief.data.HouseholdData;
 import eu.accesa.internship.epidemicrelief.facade.HouseholdFacade;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -41,7 +42,9 @@ public class HouseholdController {
 
     @PostMapping(value = "/save")
     public String addHousehold(@Valid HouseholdData household, BindingResult result, Model model) {
+        List<String> error = result.getAllErrors().stream().map(ObjectError::getDefaultMessage).collect(Collectors.toList());
         if (result.hasErrors()) {
+            model.addAttribute("errorSize", Integer.toString(error.size()));
             model.addAttribute("bindingResultMsg", result.getAllErrors().stream().map(ObjectError::getDefaultMessage).collect(Collectors.toList()));
             return "household/addHousehold";
         }
@@ -51,8 +54,10 @@ public class HouseholdController {
     }
 
     @GetMapping("/edit/{id}")
-    public String getUpdateHouseholdForm(@PathVariable("id") long id, Model model) {
+    public String getUpdateHouseholdForm(@PathVariable("id") long id, Model model, @ModelAttribute("error") ArrayList<String> error) {
         Optional<HouseholdData> household = householdFacade.getById(id);
+        model.addAttribute("errorSize", Integer.toString(error.size()));
+        model.addAttribute("bindingResultMsg", error);
         if (household.isEmpty()) {
             throw new IllegalArgumentException("No household exists for id " + id);
         }
@@ -62,14 +67,15 @@ public class HouseholdController {
     }
 
     @PostMapping("/update")
-    public String updateHousehold(@Valid HouseholdData household, BindingResult result, Model model) {
+    public String updateHousehold(@Valid HouseholdData household, BindingResult result, RedirectAttributes redirectAttrs) {
+        List<String> bindingResultMsg = result.getAllErrors().stream().map(DefaultMessageSourceResolvable::getDefaultMessage).collect(Collectors.toList());
+
         if (result.hasErrors()) {
-            return "household/updateHousehold";
+            redirectAttrs.addFlashAttribute("error", bindingResultMsg);
+            return "redirect:/households/edit/" + household.getId();
         }
 
         householdFacade.updateHousehold(household);
-        model.addAttribute("households", householdFacade.getHouseholds());
-        model.addAttribute("bindingResultMsg", result.getAllErrors().toString());
         return "redirect:/households";
     }
 
