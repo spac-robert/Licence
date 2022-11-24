@@ -19,7 +19,14 @@ public class LoginConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/").permitAll()
                 .antMatchers("/products", "/products/**").hasAuthority(Role.ADMIN.name())
                 .antMatchers("/profile/**").hasAuthority(Role.USER.name())
-                .anyRequest().authenticated().and().formLogin().and().logout()
+                .anyRequest().authenticated().and().formLogin().loginPage("/login").defaultSuccessUrl("/").permitAll()
+                .and()
+                .rememberMe()
+                .key("rem-me-key")
+                .rememberMeParameter("remember")
+                .rememberMeCookieName("rememberlogin")
+                .tokenValiditySeconds(100).and()
+                .logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"));
     }
 

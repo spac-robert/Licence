@@ -4,7 +4,7 @@
 
 <template:pageTemplate title="Products">
 
-    <form action="/products/" method="post">
+    <form action="/products" method="post">
         Select a Category:&nbsp;
         <label>
             <select name="productCategory">
